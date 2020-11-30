@@ -1,17 +1,18 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <nav-bar />
+    <movies />
+  </div>
 </template>
 
 <script>
+import NavBar from "./components/NavBar.vue";
+import Movies from "./views/Movies.vue";
 export default {
   name: "App",
-  components: {},
+  components: { NavBar, Movies },
 };
 </script>
 
 <style>
-#app {
-  text-align: center;
-  color: #2c3e50;
-}
 </style>
