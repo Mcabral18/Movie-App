@@ -14,7 +14,12 @@
         <h5 class="card-text">
           {{ movieSearch.release_date }}
         </h5>
-        <button class="btn btn-primary">Watch Latter</button>
+        <button
+          v-on:click="addMovieSearch(movieSearch)"
+          class="btn btn-primary"
+        >
+          Watch Latter
+        </button>
       </div>
     </div>
   </div>
@@ -22,7 +27,7 @@
 
 <script>
 export default {
-  props: ["movieSearch"],
+  props: ["movieSearch", "addMovieSearch"],
 };
 </script>
 

@@ -1,6 +1,11 @@
 <template>
   <section>
-    <div class="mt-5">
+    <watch-later
+      :watchLater="watchLater"
+      :removeMovie="removeMovie"
+      class="mt-3"
+    />
+    <div class="mt-3">
       <form @submit.prevent="getMovie">
         <fieldset class="form-group">
           <input
@@ -20,11 +25,17 @@
           v-for="(movieSearch, index) in movieSearch"
           :key="index"
           :movieSearch="movieSearch"
+          :addMovieSearch="addMovieSearch"
         />
       </div>
     </div>
     <div class="row" v-if="show">
-      <movie v-for="(movie, index) in movies" :key="index" :movie="movie" />
+      <movie
+        v-for="(movie, index) in movies"
+        :key="index"
+        :movie="movie"
+        :addMovie="addMovie"
+      />
     </div>
   </section>
 </template>
@@ -32,6 +43,7 @@
 <script>
 import Movie from "./Movie";
 import MovieSearch from "./MovieSearch.vue";
+import WatchLater from "./WatchLater.vue";
 export default {
   props: ["movies"],
   data() {
@@ -39,11 +51,13 @@ export default {
       searchMovie: "",
       movieSearch: [],
       show: true,
+      watchLater: [],
     };
   },
   components: {
     Movie,
     MovieSearch,
+    WatchLater,
   },
   methods: {
     async getMovie() {
@@ -54,6 +68,17 @@ export default {
       this.movieSearch = data.results;
       this.show = false;
       console.log(this.movieSearch);
+    },
+    addMovie(movie) {
+      this.watchLater.push(movie);
+      console.log(this.watchLater);
+    },
+    addMovieSearch(movieSearch) {
+      this.watchLater.push(movieSearch);
+      console.log(this.watchLater);
+    },
+    removeMovie(index) {
+      this.watchLater.splice(this.watchLater.indexOf(index), 1);
     },
   },
 };
